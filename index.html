@@ -28,9 +28,10 @@
       view.ui.add(basemapGallery, {
         position: "top-right"
       });
-      let locate  = new Locate({
+      let locateWidget = new Locate({
         view: view
       });
+      view.ui.add(locateWidget, "top-right");
     }); 
   </script>
 
