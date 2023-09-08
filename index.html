@@ -10,7 +10,7 @@
   <script src="https://js.arcgis.com/4.25/"></script>
 
   <script>
-    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery"], function(esriConfig, Map, MapView, BasemapGallery) {
+    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", "esri/widgets/Locate"], function(esriConfig, Map, MapView, BasemapGallery, Locate) {
       esriConfig.apiKey = "AAPKf3284c8eeffd412aab0f3569bcd47254DeNumbLECBxYvyGYIpDQJ-iog6b1b1dlCGefuvuyYNG79KEPqb-B4eX6at6jjwDf";
       const map = new Map({ 
         basemap: "arcgis-imagery" // Basemap layer service
@@ -28,6 +28,14 @@
       view.ui.add(basemapGallery, {
         position: "top-right"
       });
+      let locateWidget = new Locate({
+        view: view,   // Attaches the Locate button to the view
+        graphic: new Graphic({
+          symbol: { type: "simple-marker" }  // overwrites the default symbol used for the
+          // graphic placed at the location of the user when found
+        })
+      });
+      view.ui.add(locateWidget, "top-right");
     }); 
   </script>
 
