@@ -10,7 +10,7 @@
   <script src="https://js.arcgis.com/4.25/"></script>
 
   <script>
-    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", "esri/widgets/Locate"], function(esriConfig, Map, MapView, BasemapGallery, Locate) {
+    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", "esri/widgets/Locate", "esri/widgets/Search"], function(esriConfig, Map, MapView, BasemapGallery, Locate, Search) {
       esriConfig.apiKey = "AAPKf3284c8eeffd412aab0f3569bcd47254DeNumbLECBxYvyGYIpDQJ-iog6b1b1dlCGefuvuyYNG79KEPqb-B4eX6at6jjwDf";
       const map = new Map({ 
         basemap: "arcgis-imagery" // Basemap layer service
@@ -32,6 +32,15 @@
         view: view
       });
       view.ui.add(locateWidget, "top-right");
+      const searchWidget = new Search({
+        view: view
+      });
+      // Adds the search widget below other elements in
+      // the top left corner of the view
+      view.ui.add(searchWidget, {
+        position: "top-left",
+        index: 2
+      });
     }); 
   </script>
 
