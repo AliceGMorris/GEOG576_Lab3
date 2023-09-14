@@ -147,12 +147,12 @@
       // Define a pop-up for usaeduLayer
       const popupusafaultsfolds = {
         "title": "Faults and Folds",
-        "content": "<strong> {fault_name} </strong><br><b>Fault Age:</b> {age} <br><b>Fault type: </b> {slip_sense} <br><b>Slip Rate: </b> {slip_rate}<br><b> Dip Direction: </b>{dip_direct} <br><b>Strike: </b>{strike}"
+        "content": "<strong> {fault_name} </strong><br><b>Fault Age:</b> {age} <br><b>Fault type: </b> {slip_sense} <br><b>Slip Rate: </b> {slip_rate}<br><b> Dip Direction: </b>{dip_direct} <br><b>Strike: </b>{strike}, <br><b>Fault location: </b>{linetype}"
       }
 
       const usafaultsfoldsLayer = new FeatureLayer({
         url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/ArcGIS/rest/services/Earthquake_Faults_and_Folds_in_the_USA/FeatureServer/1",
-        outFields: ["fault_name","age ", "slip_sense", "slip_rate", "dip_direct", "strike"],
+        outFields: ["fault_name","age ", "slip_sense", "slip_rate", "dip_direct", "strike", "linetype"],
         popupTemplate: popupusafaultsfolds
       });
       map.add(usafaultsfoldsLayer);
