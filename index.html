@@ -116,30 +116,30 @@
         [ -104.457013884833003, 44.187182838114602 ], 
         [ -104.302047606447005, 43.869070946288097 ]
         ]
-    };
-      
-    const simpleFillSymbol = {
-      type: "simple-fill",
-      color: [227, 139, 79, 0.8],  // Orange, opacity 80%
-      outline: {
-          color: [255, 255, 255],
-          width: 1
+      };
+        
+      const simpleFillSymbol = {
+        type: "simple-fill",
+        color: [227, 139, 79, 0.8],  // Orange, opacity 80%
+        outline: {
+            color: [255, 255, 255],
+            width: 1
+        }
+      };
+
+      const polyAttributes = {
+        Name: "Black Hills",
+        Description: "The Black Hills of South Dakota and Wyoming"
       }
-    };
 
-    const polyAttributes = {
-      Name: "Black Hills",
-      Description: "The Black Hills of South Dakota and Wyoming"
-    }
+      const polygonGraphic = new Graphic({
+        geometry: polygon,
+        symbol: simpleFillSymbol,
+        attributes: polyAttributes,
+        popupTemplate: popupTemplate
 
-    const polygonGraphic = new Graphic({
-      geometry: polygon,
-      symbol: simpleFillSymbol,
-      attributes: polyAttributes,
-      popupTemplate: popupTemplate
-
-    });
-    graphicsLayer.add(polygonGraphic);
+      });
+      graphicsLayer.add(polygonGraphic);
     }); 
   </script>
 
