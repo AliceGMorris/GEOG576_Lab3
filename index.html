@@ -20,7 +20,8 @@
     "esri/Graphic", 
     "esri/layers/GraphicsLayer",
     "esri/symbols/SimpleMarkerSymbol",
-    "esri/PopupTemplate"
+    "esri/PopupTemplate",
+    "esri/geometry/Polygon"
     ], function(
     esriConfig, 
     Map, 
@@ -31,7 +32,8 @@
     Graphic, 
     GraphicsLayer,
     SimpleMarkerSymbol,
-    PopupTemplate
+    PopupTemplate,
+    Polygon
     ) {
 
       esriConfig.apiKey = "AAPKf3284c8eeffd412aab0f3569bcd47254DeNumbLECBxYvyGYIpDQJ-iog6b1b1dlCGefuvuyYNG79KEPqb-B4eX6at6jjwDf";
@@ -89,7 +91,7 @@
       }
       const attributes = {
         Name: "Museum of Geology",
-        Description: "South Dakota Museum of Geology run by the South Dakota Mines"
+        Description: "South Dakota Museum of Geology run by South Dakota Mines"
       }
 
       const pointGraphic = new Graphic({ 
@@ -100,6 +102,32 @@
       });
 
       graphicsLayer.add(pointGraphic);
+
+      const area = [
+        [
+          [-103.8501, 44.4993],
+          [-103.8510, 44.4996],
+          [-103.8511, 44.4999],
+          [-103.8509, 44.5003],
+          [-103.8504, 44.5004],
+          [-103.8500, 44.5000],
+          [-103.8498, 44.4997]
+        ]
+      ];
+
+      const polygon = new Polygon({
+        hasZ: false,
+        hasM: true,
+        area: area,
+        attributes: {
+        Name: "Spearfish Formation",
+        Description: "Type section for the Spearfish formation in Spearfish, SD"
+        },
+        popupTemplate: popupTemplate,
+        spatialReference: { wkid: 4326 }
+      });
+
+      graphicsLayer.add(polygon);
     }); 
   </script>
 
