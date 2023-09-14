@@ -10,18 +10,27 @@
   <script src="https://js.arcgis.com/4.25/"></script>
 
   <script>
-    require(["esri/config", 
-      "esri/Map", 
-      "esri/views/MapView", 
-      "esri/widgets/BasemapGallery", 
-      "esri/widgets/Locate", 
-      "esri/widgets/Search"], 
-    function(esriConfig, 
-      Map, 
-      MapView, 
-      BasemapGallery, 
-      Locate, 
-      Search) {
+    require([
+    "esri/config", 
+    "esri/Map", 
+    "esri/views/MapView", 
+    "esri/widgets/BasemapGallery", 
+    "esri/widgets/Locate", 
+    "esri/widgets/Search",
+    "esri/Graphic", 
+    "esri/layers/GraphicsLayer",
+    "esri/symbols/SimpleMarkerSymbol"
+    ], function(
+    esriConfig, 
+    Map, 
+    MapView, 
+    BasemapGallery, 
+    Locate, 
+    Search,
+    Graphic, 
+    GraphicsLayer,
+    SimpleMarkerSymbol
+    ) {
 
       esriConfig.apiKey = "AAPKf3284c8eeffd412aab0f3569bcd47254DeNumbLECBxYvyGYIpDQJ-iog6b1b1dlCGefuvuyYNG79KEPqb-B4eX6at6jjwDf";
       const map = new Map({ 
@@ -53,6 +62,30 @@
         position: "top-left",
         index: 2
       });
+      const graphicsLayer = new GraphicsLayer(); 
+      map.add(graphicsLayer);
+
+      const point = { //Create a point
+        type: "point", 
+        longitude: -103.206142, //long lat of Museum of Geology
+        latitude: 44.073686
+      };
+
+      const simpleMarkerSymbol = { 
+        type: "simple-marker", 
+        style: "square",
+        color: [0, 0, 139], // Color of blues rock
+        outline: { 
+          color: [255, 255, 255], // White 
+          width: 1
+        } 
+      };
+      const pointGraphic = new Graphic({ 
+        geometry: point, 
+        symbol: simpleMarkerSymbol 
+      });
+
+      graphicsLayer.add(pointGraphic);
     }); 
   </script>
 
