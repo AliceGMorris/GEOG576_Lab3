@@ -80,9 +80,21 @@
           width: 1
         } 
       };
+
+      const popupTemplate = {
+        title: "{Name}",
+        content: "{Description}"
+      }
+      const attributes = {
+        Name: "Museum of Geology",
+        Description: "South Dakota Museum of Geology run by the South Dakota Mines"
+      }
+
       const pointGraphic = new Graphic({ 
         geometry: point, 
-        symbol: simpleMarkerSymbol 
+        symbol: simpleMarkerSymbol,
+        attributes: attributes,
+        popupTemplate: popupTemplate
       });
 
       graphicsLayer.add(pointGraphic);
