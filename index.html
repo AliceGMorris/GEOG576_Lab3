@@ -103,8 +103,9 @@
 
       graphicsLayer.add(pointGraphic);
 
-      const area = [
-        [
+      const polygon = {
+        type: "polygon",
+        area: [
           [-103.8501, 44.4993],
           [-103.8510, 44.4996],
           [-103.8511, 44.4999],
@@ -113,7 +114,7 @@
           [-103.8500, 44.5000],
           [-103.8498, 44.4997]
         ]
-      ];
+    };
       /*
       const polygon = new Polygon({
         hasZ: false,
@@ -122,26 +123,28 @@
         spatialReference: { wkid: 4326 }
       }); */
       
-      const polySymbol = {
-        type: "polygon", 
-        color: [226, 119, 40] // RGB color values as an array
+      const simpleFillSymbol = {
+        type: "simple-fill",
+        color: [227, 139, 79, 0.8],  // Orange, opacity 80%
+        outline: {
+            color: [255, 255, 255],
+            width: 1
+        }
       };
 
-      const polyAtt = {
+      const polyAttributes = {
         Name: "Spearfish Formation",
         Description: "Type section for the Spearfish formation in Spearfish, SD"
-      };
-
-
+      }
 
       const polygonGraphic = new Graphic({
-        geometry: area,
-        symbol: polySymbol,
-        attributes: polyAtt, 
+        geometry: polygon,
+        symbol: simpleFillSymbol,
+        attributes: polyAttributes,
         popupTemplate: popupTemplate
-      });
 
-      view.graphics.add(polygonGraphic);
+    });
+    graphicsLayer.add(polygonGraphic);
     }); 
   </script>
 
