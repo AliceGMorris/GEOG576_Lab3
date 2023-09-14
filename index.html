@@ -157,6 +157,11 @@
       });
       map.add(usafaultsfoldsLayer);
 
+      const usaAirportsLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/GEOG576_US_Airports/FeatureServer",
+      });
+      map.add(usaAirportsLayer);
+
     }); 
   </script>
 
