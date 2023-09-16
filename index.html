@@ -194,6 +194,45 @@
       });
       map.add(usaAirportsLayer);
 
+
+      const heliRenderer = {
+        "type": "simple",
+        "symbol": {
+          "type": "picture-marker",
+          "url": "https://raw.githubusercontent.com/AliceGMorris/GEOG576_Lab2/7d338105e32bd4d94dbf3779b00b9944bca6d551/helicopter_FILL0_wght400_GRAD0_opsz24.png",
+          "width": "18px",
+          "height": "18px"
+        }
+      }
+
+      const airportLabels = {
+        symbol: {
+          type: "text",
+          color: "#FFFFFF",
+          haloColor: "#8C5E77",
+          haloSize: "2px",
+          font: {
+            size: "12px",
+            family: "Noto Sans",
+            style: "italic",
+            weight: "normal"
+          }
+        },
+        labelPlacement: "above-center",
+        labelExpressionInfo: {
+          expression: "$feature.Fac_Name"
+        }
+      };
+
+      const usaHeliLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/GEOG576_US_Airports/FeatureServer",
+        renderer: heliRenderer,
+        definitionExpression: "Fac_Type = 'HELIPORT'",
+        labelingInfo: [airportLabels]
+      });
+      map.add(usaHeliLayer);
+
+
     }); 
   </script>
 
