@@ -205,7 +205,7 @@
         }
       }
 
-      const airportLabels = {
+      const heliLabels = {
         symbol: {
           type: "text",
           color: "#FFFFFF",
@@ -228,7 +228,7 @@
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/GEOG576_US_Airports/FeatureServer",
         renderer: heliRenderer,
         definitionExpression: "Fac_Type = 'HELIPORT'",
-        labelingInfo: [airportLabels]
+        labelingInfo: [heliLabels]
       });
       map.add(usaHeliLayer);
 
