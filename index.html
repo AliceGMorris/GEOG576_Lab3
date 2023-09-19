@@ -22,7 +22,8 @@
     "esri/symbols/SimpleMarkerSymbol",
     "esri/PopupTemplate",
     "esri/geometry/Polygon",
-    "esri/layers/FeatureLayer"
+    "esri/layers/FeatureLayer",
+    "esri/geometry/Polyline"
     ], function(
     esriConfig, 
     Map, 
@@ -35,7 +36,8 @@
     SimpleMarkerSymbol,
     PopupTemplate,
     Polygon,
-    FeatureLayer
+    FeatureLayer,
+    Polyline
     ) {
 
       esriConfig.apiKey = "AAPKf3284c8eeffd412aab0f3569bcd47254DeNumbLECBxYvyGYIpDQJ-iog6b1b1dlCGefuvuyYNG79KEPqb-B4eX6at6jjwDf";
@@ -143,6 +145,35 @@
       });
 
       graphicsLayer.add(polygonGraphic);
+
+      const polyline = {
+          type: "polyline",
+          paths: [
+              [-103.25014299187825, 44.1365557877412], //Longitude, latitude
+              [-103.24196812856057, 44.10956163467826], //Longitude, latitude
+              [-103.24741803743902, 44.09253724253468],  //Longitude, latitude
+              [-103.2485080192147, 44.025762191087594],  //Longitude, latitude
+          ]
+      };
+      const simpleLineSymbol = {
+          type: "simple-line",
+          color: [226, 119, 40], // Orange
+          width: 2
+      };
+
+      const lineAttributes = {
+        Name: "Cretaceous Hogback",
+        Description: "The Rapid City section of the Cretaceous Hogback surrounding the Black Hills"
+      }
+
+      const polylineGraphic = new Graphic({
+          geometry: polyline,
+          symbol: simpleLineSymbol,
+          attributes: lineAttributes,
+          popupTemplate: popupTemplate
+      });
+      graphicsLayer.add(polylineGraphic);
+
       
       // Define a pop-up for usaeduLayer
       const popupusafaultsfolds = {
