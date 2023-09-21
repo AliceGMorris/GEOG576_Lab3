@@ -265,10 +265,42 @@
       });
       map.add(usaHeliLayer);
 
+
+      const myAirportRenderer = {
+        "type": "simple",
+        "symbol": {
+          "type": "picture-marker",
+          "url": "https://raw.githubusercontent.com/AliceGMorris/GEOG576_Lab3/00534d9b290d283b5bc14a165fa5d0cf65cf3c9d/flight_takeoff_FILL0_wght400_GRAD0_opsz24.png",
+          "width": "18px",
+          "height": "18px"
+        }
+      }
+
+      const myAiportLabels = {
+        symbol: {
+          type: "text",
+          color: "#FFFFFF",
+          haloColor: "#07ccff",
+          haloSize: "2px",
+          font: {
+            size: "12px",
+            family: "Noto Sans",
+            style: "italic",
+            weight: "normal"
+          }
+        },
+        labelPlacement: "above-center",
+        labelExpressionInfo: {
+          expression: "$feature.AirportCode"
+        }
+      };
+
       const myAirports = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/GEOG576_My_Airports/FeatureServer",
-      //adding the popup here
-      outFields: ["AirportCode"],
+        renderer: myAirportRenderer,
+        //adding the popup here
+        outFields: ["AirportCode"],
+        labelingInfo: [myAiportLabels]
       });
       //adding the feature layer to the map
       map.add(myAirports);
