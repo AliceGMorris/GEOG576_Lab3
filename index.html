@@ -57,7 +57,7 @@
       });
       // Add widget to the top right corner of the view
       view.ui.add(basemapGallery, {
-        position: "top-right"
+        position: "top-left"
       });
       let locateWidget = new Locate({
         view: view
@@ -282,7 +282,7 @@
         view: view,
         layerInfos: [pointInfos]
       }); // End Editor constructor
-      
+
       // Add the widget to the view
       view.ui.add(editor, "top-right");
 
