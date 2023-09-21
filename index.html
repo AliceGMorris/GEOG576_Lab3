@@ -24,7 +24,8 @@
     "esri/geometry/Polygon",
     "esri/layers/FeatureLayer",
     "esri/geometry/Polyline",
-    "esri/widgets/Editor"
+    "esri/widgets/Editor",
+    "esri/widgets/Legend"
     ], function(
     esriConfig, 
     Map, 
@@ -39,7 +40,8 @@
     Polygon,
     FeatureLayer,
     Polyline,
-    Editor
+    Editor,
+    Legend
     ) {
 
       esriConfig.apiKey = "AAPKf3284c8eeffd412aab0f3569bcd47254DeNumbLECBxYvyGYIpDQJ-iog6b1b1dlCGefuvuyYNG79KEPqb-B4eX6at6jjwDf";
@@ -298,7 +300,6 @@
       const myAirports = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/GEOG576_My_Airports/FeatureServer",
         renderer: myAirportRenderer,
-        //adding the popup here
         outFields: ["AirportCode"],
         labelingInfo: [myAiportLabels]
       });
@@ -318,7 +319,11 @@
       // Add the widget to the view
       view.ui.add(editor, "top-right");
 
+      let legend = new Legend({
+        view: view
+      });
 
+      view.ui.add(legend, "bottom-right");
     }); 
   </script>
 
