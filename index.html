@@ -25,7 +25,8 @@
     "esri/layers/FeatureLayer",
     "esri/geometry/Polyline",
     "esri/widgets/Editor",
-    "esri/widgets/Legend"
+    "esri/widgets/Legend",
+    "esri/widgets/Expand"
     ], function(
     esriConfig, 
     Map, 
@@ -41,7 +42,8 @@
     FeatureLayer,
     Polyline,
     Editor,
-    Legend
+    Legend,
+    Expand
     ) {
 
       esriConfig.apiKey = "AAPKf3284c8eeffd412aab0f3569bcd47254DeNumbLECBxYvyGYIpDQJ-iog6b1b1dlCGefuvuyYNG79KEPqb-B4eX6at6jjwDf";
@@ -55,12 +57,16 @@
         container: "viewDiv" // Div element
       });
       const basemapGallery = new BasemapGallery({
-        view: view
+        view: view,
+        container: document.createElement("div")
       });
-      // Add widget to the top right corner of the view
-      view.ui.add(basemapGallery, {
-        position: "top-left"
+      
+      const bgExpand = new Expand({
+        view: view,
+        content: basemapGallery
       });
+      view.ui.add(bgExpand, "top-right");
+
       let locateWidget = new Locate({
         view: view
       });
@@ -320,10 +326,16 @@
       view.ui.add(editor, "top-right");
 
       let legend = new Legend({
-        view: view
+        view: view,
+        container: document.createElement("legend")
       });
 
-      view.ui.add(legend, "bottom-left");
+      const lgExpand = new Expand({
+        view: view,
+        content: legend
+      });
+
+      view.ui.add(lgExpand, "bottom-right");
     }); 
   </script>
 
