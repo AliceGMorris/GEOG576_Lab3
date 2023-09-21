@@ -23,7 +23,8 @@
     "esri/PopupTemplate",
     "esri/geometry/Polygon",
     "esri/layers/FeatureLayer",
-    "esri/geometry/Polyline"
+    "esri/geometry/Polyline",
+    "esri/widgets/Editor"
     ], function(
     esriConfig, 
     Map, 
@@ -37,7 +38,8 @@
     PopupTemplate,
     Polygon,
     FeatureLayer,
-    Polyline
+    Polyline,
+    Editor
     ) {
 
       esriConfig.apiKey = "AAPKf3284c8eeffd412aab0f3569bcd47254DeNumbLECBxYvyGYIpDQJ-iog6b1b1dlCGefuvuyYNG79KEPqb-B4eX6at6jjwDf";
@@ -262,6 +264,27 @@
         labelingInfo: [heliLabels]
       });
       map.add(usaHeliLayer);
+
+      const myAirports = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/GEOG576_My_Airports/FeatureServer",
+      //adding the popup here
+      outFields: ["AirportCode"],
+      });
+      //adding the feature layer to the map
+      map.add(myAirports);
+
+      const pointInfos = {
+        layer: myAirports
+      }
+
+      // Begin Editor constructor
+      const editor = new Editor({
+        view: view,
+        layerInfos: [pointInfos]
+      }); // End Editor constructor
+      
+      // Add the widget to the view
+      view.ui.add(editor, "top-right");
 
 
     }); 
